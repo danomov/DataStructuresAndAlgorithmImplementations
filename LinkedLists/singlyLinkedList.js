@@ -86,19 +86,24 @@ class LinkedList {
         }
     };
 
-    deleteNodeAtIndex = index => {
-        let deletedNode;
+    deleteFirstNode = () => {
+        let deletedNode = this.head;
+        let nextNode = deletedNode.next;
+        this.head = nextNode;
+        this._length--;
 
-        if (index === 0) {
-            deletedNode = this.head;
-            let nextNode = deletedNode.next;
-            this.head = nextNode;
-        } else if (index !== this._length - 1) {
+        return deletedNode;
+    }
+
+    deleteNodeAtIndex = index => {
+        let deletedNode = null;
+
+        if (index !== this._length - 1) {
 
             let currentNode = this.head;
             let count = 0;
 
-            while (count + 1 !== index) {
+            while (count !== index - 1) {
                 count++;
                 currentNode = currentNode.next;
             }
@@ -108,6 +113,8 @@ class LinkedList {
             let nextNode = deletedNode.next;
 
             prevNode.next = nextNode;
+        } else {
+            return 'Error: Oops, please check given index';
         }
 
         this._length--;
