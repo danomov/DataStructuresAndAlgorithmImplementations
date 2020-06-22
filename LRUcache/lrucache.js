@@ -16,6 +16,7 @@ class LRU {
     this.size = 0;
   }
 
+  //Add new element
   write(key, value) {
     this.checkSize(key);
 
@@ -40,6 +41,7 @@ class LRU {
     }
   }
 
+  // Read the cache element
   read(key) {
     if (this.cache[key]) {
       const value = this.cache[key].value;
@@ -52,6 +54,7 @@ class LRU {
     console.log(`Item not available in cache for key ${key}`);
   }
 
+  // Remove the cache element
   remove(key) {
     const node = this.cache[key];
 
@@ -71,6 +74,7 @@ class LRU {
     this.size--;
   }
 
+  // Clear all elements
   clear() {
     this.head = null;
     this.tail = null;
@@ -78,6 +82,7 @@ class LRU {
     this.cache = {};
   }
 
+  // Check cache size
   checkSize(key) {
     if (this.size + 1 > this.limit && !this.cache[key]) {
       this.remove(this.tail.key);
